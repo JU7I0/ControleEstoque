@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -24,19 +25,22 @@ public class Produto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "O nome do produto é obrigatório.")
 	private String nome; 
 	
 	private String descricao;
 	
-	@Positive
+	@Positive(message = "O Volume ou Peso precisa ser positivo.")
 	private Long volumePeso;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING)
-    @Positive
+    @Positive(message = "O valor do produto precisa ser positivo.")
     private BigDecimal valor;
+	
 	
 	private LocalDateTime validade;
 	
+	@NotNull(message = "O nome do fabricante é obrigatório.")
 	private String fabricante;
 	
 	
